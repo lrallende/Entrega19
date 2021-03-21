@@ -1,0 +1,40 @@
+use ecommerce
+db.createCollection('messages)
+db.createCollection('products')
+db.messages.insertMany([
+ { email: 'lautaroall4@gmail.com', date: Date(), message: 'Mensaje 1'},
+ { email: 'lautaroall4@gmail.com', date: Date(), message: 'Mensaje 2'},
+ { email: 'lautaroall4@gmail.com', date: Date(), message: 'Mensaje 3'},
+ { email: 'lautaroall4@gmail.com', date: Date(), message: 'Mensaje 4'},
+ { email: 'lautaroall4@gmail.com', date: Date(), message: 'Mensaje 5'},
+ { email: 'lautaroall4@gmail.com', date: Date(), message: 'Mensaje 6'},
+ { email: 'lautaroall4@gmail.com', date: Date(), message: 'Mensaje 7'}, 
+ { email: 'lautaroall4@gmail.com', date: Date(), message: 'Mensaje 8'},
+ { email: 'lautaroall4@gmail.com', date: Date(), message: 'Mensaje 9'},
+ { email: 'lautaroall4@gmail.com', date: Date(), message: 'Mensaje 10'}
+])
+db.products.insertMany([
+ {timestamp: Date(), name: "Patagonia", desc: "24.7", code: "104", img: "img1", price: 250, stock: 50},
+ {timestamp: Date(), name: "Quilmes", desc: "Bajocero", code: "105", img: "img2", price: 750, stock: 50},
+ {timestamp: Date(), name: "Imperial", desc: "APA", code: "106", img: "img3", price: 1300, stock: 70},
+ {timestamp: Date(), name: "Corona", desc: "Classic", code: "107", img: "img4", price: 1700, stock: 90},
+ {timestamp: Date(), name: "Andes", desc: "IPA", code: "108", img: "img5", price: 2050, stock: 60},
+ {timestamp: Date(), name: "Brahma, desc: "Classic", code: "109", img: "img6", price: 2670, stock: 40},
+ {timestamp: Date(), name: "Palermo", desc: "Blanca", code: "110", img: "img7", price: 3410, stock: 50},
+ {timestamp: Date(), name: "Heineken", desc: "Classic", code: "111", img: "img8", price: 3905, stock: 10},
+ {timestamp: Date(), name: "Temple", desc: "Wolf IPA", code: "112", img: "img9", price: 4570, stock: 180},
+ {timestamp: Date(), name: "Schneider", desc: "Classic", code: "113", img: "img10", price: 4690, stock: 100}
+])
+db.messages.find()
+db.products.find()
+db.messages.find().count()
+db.products.find().count()
+db.products.insert({timestamp: Date(), name: "Sol", desc: "Classic", code:"114", img: "img11", price: 3120, stock: 185})
+db.products.find({price: {$lt: 1000}})
+db.products.find({price: { $gt: 1000, $lt: 3000}})
+db.products.find({price: { $gt: 3000}})
+db.products.find({}, {name: 1}).sort({price: -1}).skip(2).limit(1)
+db.products.updateMany({}, {$set: {stock: 100}})
+db.products.updateMany({price: {$gt: 4000}}, {$set: {stock: 0}})
+db.products.remove({price: {$lt: 1000}})
+db.createUser({user: "pepe", pwd: "asd456", roles: [{ role: "read", db: "ecommerce"}]})
